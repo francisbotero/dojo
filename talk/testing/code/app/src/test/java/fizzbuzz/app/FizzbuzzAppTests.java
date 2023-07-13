@@ -6,12 +6,18 @@ package fizzbuzz.app;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledIfEnvironmentVariable;
 import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.text.MessageFormat;
+import java.util.stream.Stream;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 class FizzbuzzTest {
     /*
@@ -75,5 +81,29 @@ class FizzbuzzTest {
 
         assertTrue(actualOutput.startsWith(NEW_EXPECTED_OUTPUT),
                 MessageFormat.format("Expected to start\nprefix: {1}\nstring: {0}", actualOutput, NEW_EXPECTED_OUTPUT));
+    }
+
+    @ParameterizedTest
+    @MethodSource("translationValuesProvider")
+    void testTranslation(int input, String expectedOutput) {
+        var output = App.translate(input);
+        assertEquals(expectedOutput, output);
+    }
+
+    static Stream<Arguments> translationValuesProvider() {
+        return Stream.of(
+                arguments(3, "fizz"),
+                arguments(6, "fizz"),
+                arguments(9, "fizz"),
+                arguments(5, "buzz"),
+                arguments(10, "buzz"),
+                arguments(20, "buzz"),
+                arguments(15, "fizzbuzz"),
+                arguments(30, "fizzbuzz"),
+                arguments(45, "fizzbuzz"),
+                arguments(1, "1"),
+                arguments(2, "2"),
+                arguments(4, "4")
+        );
     }
 }
