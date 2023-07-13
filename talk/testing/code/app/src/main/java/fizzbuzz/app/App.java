@@ -9,21 +9,23 @@
  */
 package fizzbuzz.app;
 
-import org.apache.commons.text.WordUtils;
 public class App {
     public static void main(String[] args) {
         for (int i = 1; i <= 100; i++) {
-            if (i % 15 == 0) {
-                System.out.print("fizzbuzz");
-            }
-            else if (i % 3 == 0) {
-                System.out.print("fizz");
-            } else if (i % 5 == 0) {
-                System.out.print("buzz");
-            } else {
-                System.out.print(i);
-            }
-            System.out.print(" ");
+            final String translated = translate(i);
+            System.out.print(translated + " ");
+        }
+    }
+    public static String translate(int i) {
+        if (i % 15 == 0) {
+            return"fizzbuzz";
+        }
+        else if (i % 3 == 0) {
+            return "fizz";
+        } else if (i % 5 == 0) {
+            return "buzz";
+        } else {
+            return Integer.toString(i);
         }
     }
 }
