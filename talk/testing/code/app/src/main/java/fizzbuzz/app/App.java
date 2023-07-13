@@ -11,21 +11,10 @@ package fizzbuzz.app;
 
 public class App {
     public static void main(String[] args) {
-        final var fizzbuzzer = new Fizzbuzzer();
+        final Translator fizzbuzzer = new Fizzbuzzer();
         for (int i = 1; i <= 100; i++) {
             final String translated = fizzbuzzer.translate(i);
             System.out.print(translated + " ");
-        }
-    }
-    public static String translate(int i) {
-        if (i % 15 == 0) {
-            return"fizzbuzz";
-        } else if (i % 3 == 0) {
-            return "fizz";
-        } else if (i % 5 == 0) {
-            return "buzz";
-        } else {
-            return Integer.toString(i);
         }
     }
 }
