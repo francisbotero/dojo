@@ -1,3 +1,5 @@
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat
+import org.gradle.api.tasks.testing.logging.TestLogEvent
 import org.gradle.internal.impldep.org.fusesource.jansi.AnsiRenderer.test
 
 /*
@@ -21,7 +23,33 @@ application {
 }
 
 tasks.withType<Test> {
+    this.dependsOn("cleanTest")
     this.testLogging {
+        this.events = setOf(
+            TestLogEvent.FAILED,
+            TestLogEvent.PASSED,
+            TestLogEvent.SKIPPED,
+            TestLogEvent.STANDARD_ERROR,
+            TestLogEvent.STANDARD_OUT)
         this.showStandardStreams = true
+        this.showExceptions = true
+        this.exceptionFormat = TestExceptionFormat.FULL
     }
+
+    this.addTestListener(object : TestListener {
+        override fun beforeSuite(suite: TestDescriptor) {}
+        override fun beforeTest(testDescriptor: TestDescriptor) {}
+        override fun afterTest(testDescriptor: TestDescriptor, result: TestResult) {}
+
+        override fun afterSuite(suite: TestDescriptor, result: TestResult) {
+            if (suite.parent == null) { // root suite
+                logger.lifecycle("----")
+                logger.lifecycle("Test result: ${result.resultType}")
+                logger.lifecycle("Test summary: ${result.testCount} tests, " +
+                        "${result.successfulTestCount} succeeded, " +
+                        "${result.failedTestCount} failed, " +
+                        "${result.skippedTestCount} skipped")
+            }
+        }
+    })
 }
