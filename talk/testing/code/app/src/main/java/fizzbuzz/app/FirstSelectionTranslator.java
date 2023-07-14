@@ -1,8 +1,8 @@
 package fizzbuzz.app;
 
-public class Fizzbuzzer implements Translator {
+public class FirstSelectionTranslator implements Translator {
     Translator translators[];
-    public Fizzbuzzer() {
+    public FirstSelectionTranslator() {
         this.translators = new Translator[]{
                 new AccumulationTranslator(),
                 new EchoTranslator()};

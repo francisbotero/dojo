@@ -11,7 +11,7 @@ package fizzbuzz.app;
 
 public class App {
     public static void main(String[] args) {
-        final Translator fizzbuzzer = new Fizzbuzzer();
+        final Translator fizzbuzzer = new FirstSelectionTranslator();
         for (int i = 1; i <= 100; i++) {
             final String translated = fizzbuzzer.translate(i);
             System.out.print(translated + " ");

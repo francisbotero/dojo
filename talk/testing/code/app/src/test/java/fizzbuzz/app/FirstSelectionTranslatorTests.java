@@ -9,11 +9,11 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
-class FizzbuzzerTests {
+class FirstSelectionTranslatorTests {
     @ParameterizedTest
     @MethodSource("translationValuesProvider")
     void testTranslation(int input, String expectedOutput) {
-        final var fizzBuzzer = new Fizzbuzzer();
+        final var fizzBuzzer = new FirstSelectionTranslator();
         var output = fizzBuzzer.translate(input);
         assertEquals(expectedOutput, output);
     }
