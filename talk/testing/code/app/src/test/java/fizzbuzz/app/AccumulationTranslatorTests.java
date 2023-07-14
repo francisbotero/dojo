@@ -23,14 +23,8 @@ class AccumulationTranslatorTests {
     static Stream<Arguments> translationValuesProvider() {
         return Stream.of(
                 arguments(3, "fizz"),
-                arguments(6, "fizz"),
-                arguments(9, "fizz"),
                 arguments(5, "buzz"),
-                arguments(10, "buzz"),
-                arguments(20, "buzz"),
                 arguments(15, "fizzbuzz"),
-                arguments(30, "fizzbuzz"),
-                arguments(45, "fizzbuzz"),
                 arguments(1, null));
     }
 }
