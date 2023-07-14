@@ -11,10 +11,14 @@ package fizzbuzz.app;
 
 public class App {
     public static void main(String[] args) {
-        final Translator fizzbuzzer = new FirstSelectionTranslator();
+        final Translator fizzbuzzer = new FirstSelectionTranslator(App.ORIGINAL_FIZZBUZZ_CONFIG);
         for (int i = 1; i <= 100; i++) {
             final String translated = fizzbuzzer.translate(i);
             System.out.print(translated + " ");
         }
     }
+
+    public static Translator[] ORIGINAL_FIZZBUZZ_CONFIG = new Translator[]{
+            new AccumulationTranslator(),
+            new EchoTranslator()};
 }

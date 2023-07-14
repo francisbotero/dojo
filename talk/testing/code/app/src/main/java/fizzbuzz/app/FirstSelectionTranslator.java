@@ -2,10 +2,8 @@ package fizzbuzz.app;
 
 public class FirstSelectionTranslator implements Translator {
     Translator translators[];
-    public FirstSelectionTranslator() {
-        this.translators = new Translator[]{
-                new AccumulationTranslator(),
-                new EchoTranslator()};
+    public FirstSelectionTranslator(Translator[] translators) {
+        this.translators = translators;
     }
 
     @Override

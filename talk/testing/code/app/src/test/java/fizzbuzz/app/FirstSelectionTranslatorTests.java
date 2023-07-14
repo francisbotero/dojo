@@ -1,5 +1,6 @@
 package fizzbuzz.app;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -13,7 +14,7 @@ class FirstSelectionTranslatorTests {
     @ParameterizedTest
     @MethodSource("translationValuesProvider")
     void testTranslation(int input, String expectedOutput) {
-        final var fizzBuzzer = new FirstSelectionTranslator();
+        final var fizzBuzzer = new FirstSelectionTranslator(App.ORIGINAL_FIZZBUZZ_CONFIG);
         var output = fizzBuzzer.translate(input);
         assertEquals(expectedOutput, output);
     }
@@ -33,5 +34,12 @@ class FirstSelectionTranslatorTests {
                 arguments(2, "2"),
                 arguments(4, "4")
         );
+    }
+
+    @Test
+    void testNoRuleTranslation() {
+        final var fizzBuzzer = new FirstSelectionTranslator(new Translator[]{});
+        var output = fizzBuzzer.translate(1);
+        assertEquals(null, output);
     }
 }
