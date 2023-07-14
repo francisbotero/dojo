@@ -1,12 +1,13 @@
 package fizzbuzz.app;
 
 public class Fizzbuzzer implements Translator {
-    ModuloTranslator translators[];
+    Translator translators[];
     public Fizzbuzzer() {
-        this.translators = new ModuloTranslator[]{
+        this.translators = new Translator[]{
                 new ModuloTranslator(15, "fizzbuzz"),
                 new ModuloTranslator(3, "fizz"),
-                new ModuloTranslator(5, "buzz")};
+                new ModuloTranslator(5, "buzz"),
+                new EchoTranslator()};
     }
 
     @Override
@@ -18,6 +19,6 @@ public class Fizzbuzzer implements Translator {
                 return output;
             }
         }
-        return Integer.toString(i);
+        return null;
     }
 }
