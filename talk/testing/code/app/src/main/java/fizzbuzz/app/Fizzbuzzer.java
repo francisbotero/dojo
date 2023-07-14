@@ -4,9 +4,7 @@ public class Fizzbuzzer implements Translator {
     Translator translators[];
     public Fizzbuzzer() {
         this.translators = new Translator[]{
-                new ModuloTranslator(15, "fizzbuzz"),
-                new ModuloTranslator(3, "fizz"),
-                new ModuloTranslator(5, "buzz"),
+                new AccumulationTranslator(),
                 new EchoTranslator()};
     }
 
