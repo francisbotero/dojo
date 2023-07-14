@@ -11,23 +11,25 @@ package fizzbuzz.app;
 
 public class App {
     public static void main(String[] args) {
-        final Translator fizzbuzzer = new FirstSelectionTranslator(App.ORIGINAL_FIZZBUZZ_CONFIG);
+        final Translator fizzbuzzer = App.ORIGINAL_FIZZBUZZ_CONFIG;
         for (int i = 1; i <= 100; i++) {
             final String translated = fizzbuzzer.translate(i);
             System.out.print(translated + " ");
         }
     }
 
-    public static Translator[] ORIGINAL_FIZZBUZZ_CONFIG = new Translator[]{
-            new AccumulationTranslator(new Translator[]{
+    public static final Translator ORIGINAL_FIZZBUZZ_CONFIG = new FirstSelectionTranslator(
+            new Translator[]{
+                new AccumulationTranslator(new Translator[]{
                     new ModuloTranslator(3, "fizz"),
                     new ModuloTranslator(5, "buzz")}),
-            new EchoTranslator()};
+                new EchoTranslator()});
 
-    public static Translator[] NEW_FIZZBUZZ_CONFIG = new Translator[]{
-            new AccumulationTranslator(new Translator[]{
+    public static final Translator NEW_FIZZBUZZ_CONFIG = new FirstSelectionTranslator(
+            new Translator[]{
+                new AccumulationTranslator(new Translator[]{
                     new ModuloTranslator(3, "fizz"),
                     new ModuloTranslator(5, "buzz"),
                     new ModuloTranslator(7, "bang")}),
-            new EchoTranslator()};
+                new EchoTranslator()});
 }
