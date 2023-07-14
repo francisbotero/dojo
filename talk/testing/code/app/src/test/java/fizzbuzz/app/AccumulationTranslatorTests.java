@@ -13,7 +13,9 @@ class AccumulationTranslatorTests {
     @ParameterizedTest
     @MethodSource("translationValuesProvider")
     void testTranslation(int input, String expectedOutput) {
-        final var fizzBuzzer = new AccumulationTranslator();
+        final var fizzBuzzer = new AccumulationTranslator(new Translator[]{
+                new ModuloTranslator(3, "fizz"),
+                new ModuloTranslator(5, "buzz")});
         var output = fizzBuzzer.translate(input);
         assertEquals(expectedOutput, output);
     }

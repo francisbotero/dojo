@@ -19,6 +19,8 @@ public class App {
     }
 
     public static Translator[] ORIGINAL_FIZZBUZZ_CONFIG = new Translator[]{
-            new AccumulationTranslator(),
+            new AccumulationTranslator(new Translator[]{
+                    new ModuloTranslator(3, "fizz"),
+                    new ModuloTranslator(5, "buzz")}),
             new EchoTranslator()};
 }

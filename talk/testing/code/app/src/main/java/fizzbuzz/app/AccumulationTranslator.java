@@ -2,10 +2,8 @@ package fizzbuzz.app;
 
 public class AccumulationTranslator implements Translator {
     Translator translators[];
-    public AccumulationTranslator() {
-        this.translators = new Translator[]{
-                new ModuloTranslator(3, "fizz"),
-                new ModuloTranslator(5, "buzz")};
+    public AccumulationTranslator(Translator[] translators) {
+        this.translators = translators;
     }
 
     @Override
